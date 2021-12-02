@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { PokemonList } from '../components/pokemon/PokemonList';
 import { fetchPokemon } from '../services/pokemonAPI';
 
 
@@ -16,7 +17,7 @@ function PokeContainer(){
   }, []);
 
   return (
-    <h1>PokeContainer</h1>
+    <PokemonList pokemons={pokemons}/>
   );
 }
 

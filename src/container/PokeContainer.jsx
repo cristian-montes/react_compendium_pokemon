@@ -52,7 +52,7 @@ function PokeContainer(){
 
       if (selectedAbility !== 'all'){
         const filteredPokemon = await fetchFilteredPokemon(selectedAbility);
-        console.log('HERE', filteredPokemon);
+       
         setPokemons(filteredPokemon);
       }
       setIsLoading(false);

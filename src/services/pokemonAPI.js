@@ -5,7 +5,6 @@ const fetchPokemon = async () => {
   const pokemonList = await fetch(URL);
   const pokemonListData = await pokemonList.json();
   
-//   console.log('POKEDATA', pokemonListData.results);
   return pokemonListData.results;
 
 };
@@ -37,7 +36,6 @@ const fetchPokemonAbilities = async () => {
 //FILTERED
 const fetchFilteredPokemon = async (ability) => {
   const res = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?ability=${ability}`);
-  console.log('res', res);
   const data = await res.json();
 
  

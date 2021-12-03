@@ -1,14 +1,15 @@
 
-export default function SortForm({ sorted, setSorted, handleSorted }){
+export default function SortForm({ sorted, handleSort }){
   return (
-    <form aria-label="sortForm" onClick={handleSorted}>
+    <form aria-label="sortForm" >
       <h3>Sort Pokemon by Ability</h3>
       <input 
         type="radio" 
         id="desc" 
         name={sorted}
         value='desc'
-        onChange={(event) => setSorted(event.target.value)}
+        onChange={(event) => handleSort(event)}
+    
       />
       <label htmlFor="descending">Descending</label>
 
@@ -17,9 +18,10 @@ export default function SortForm({ sorted, setSorted, handleSorted }){
         id="asc" 
         name={sorted} 
         value="asc"
-        onChange={(event) => setSorted(event.target.value)}
+        onChange={(event) => handleSort(event)}
       />
       <label htmlFor="ascending">Ascending</label>
+ 
     </form>
   );
 }

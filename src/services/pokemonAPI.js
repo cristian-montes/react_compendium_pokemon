@@ -45,7 +45,7 @@ const fetchFilteredPokemon = async (ability) => {
 
 //SORTED
 const fetchSortedPokemon = async (order) => {
-  const res = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=ability&direction=${order}`);
+  const res = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=defense&direction=${order}`);
   const data = await res.json();
 
  

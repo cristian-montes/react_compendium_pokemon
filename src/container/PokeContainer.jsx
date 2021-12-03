@@ -10,9 +10,8 @@ function PokeContainer(){
   const [searchName, setSearchName] = useState('');
   const [abilities, setAbilities] = useState([]);
   const [selectedAbility, setSelectedAbility] = useState('all');
-  const [sorted, setSorted] = useState('');
+  const [sorted, setSorted] = useState('desc');
   
-
   useEffect(() => {
     const pokemonData = async () => {
       const data = await fetchPokemon();
@@ -23,7 +22,7 @@ function PokeContainer(){
     pokemonData();
   }, []);
 
-  
+  //HANDLE SUBMIT
   const handleSubmit = async (event) =>{
     event.preventDefault();    
     setIsLoading(true);
@@ -35,20 +34,18 @@ function PokeContainer(){
     setSearchName('');
   };
 
-  console.log('sorted', sorted);
   //SORT POKEMONS
   const handleSort = async (event) => {
-    event.preventDefault();
     setIsLoading(true);
-
+    setSorted(event.target.value);
     const sortedPokes = await fetchSortedPokemon(sorted);
-    setPokemons(sortedPokes);
-
+    await setPokemons(sortedPokes);
+    // setSorted('');
     setIsLoading(false);
   };  
 
 
-
+//FETCH ABILITIES
   useEffect(() => {
     const abily = async () => {
       const fetchedAbilities = await fetchPokemonAbilities();
@@ -60,6 +57,7 @@ function PokeContainer(){
   }, []);
 
 
+  //FILTERED POKEMON
   useEffect(()=> {
     async function capturedFilteredPokemon(){
       if (!selectedAbility) return;

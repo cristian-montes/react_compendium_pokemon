@@ -18,8 +18,6 @@ function PokeContainer(){
       const data = await fetchPokemon();
       setPokemons(data);
       setIsLoading(false);
-      const lomen = await fetchSortedPokemon('asc');
-      console.log(lomen);
     };
 
     pokemonData();
@@ -37,9 +35,16 @@ function PokeContainer(){
     setSearchName('');
   };
 
+  console.log('sorted', sorted);
   //SORT POKEMONS
   const handleSort = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
+
+    const sortedPokes = await fetchSortedPokemon(sorted);
+    setPokemons(sortedPokes);
+
+    setIsLoading(false);
   };  
 
 
@@ -82,6 +87,9 @@ function PokeContainer(){
         abilities={abilities}
         setSelectedAbility={setSelectedAbility}
         selectedAbility={selectedAbility}
+        sorted={sorted}
+        setSorted={setSorted}
+        handleSort={handleSort}
       />
       <div>
         {isloading ? (<h1> Loading Pokemons!!!!</h1>)

@@ -1,12 +1,25 @@
 
-export default function SortForm(){
+export default function SortForm({ sorted, setSorted, handleSorted }){
   return (
-    <form>
+    <form aria-label="sortForm" onClick={handleSorted}>
       <h3>Sort Pokemon by Ability</h3>
-      <input type="radio" id="html" name="fav_language" value="desc"/>
+      <input 
+        type="radio" 
+        id="desc" 
+        name={sorted}
+        value='desc'
+        onChange={(event) => setSorted(event.target.value)}
+      />
       <label htmlFor="descending">Descending</label>
-      <input type="radio" id="html" name="fav_language" value="desc"/>
-      <label htmlFor="descending">Ascending</label>
+
+      <input 
+        type="radio" 
+        id="asc" 
+        name={sorted} 
+        value="asc"
+        onChange={(event) => setSorted(event.target.value)}
+      />
+      <label htmlFor="ascending">Ascending</label>
     </form>
   );
 }

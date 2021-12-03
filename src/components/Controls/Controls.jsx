@@ -1,5 +1,6 @@
 import FilteredForm from '../Forms/FilterForm';
 import { SearchForm } from '../Forms/SearchForm';
+import SortForm from '../Forms/SortForm';
 
 
 export default function Controls({ searchName, setSearchName, handleSubmit, abilities, setSelectedAbility, selectedAbility }){
@@ -12,6 +13,7 @@ export default function Controls({ searchName, setSearchName, handleSubmit, abil
       />
       <FilteredForm abilities={abilities} setSelectedAbility={setSelectedAbility}
         selectedAbility={selectedAbility}/>
+      <SortForm/>
     </section>
   );
 

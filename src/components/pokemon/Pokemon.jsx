@@ -1,6 +1,6 @@
 
 export default function Pokemon({ poke }){
-  const { pokemon, type_1, type_2, attack, defense, speed, egg_group_1, url_image } = poke;
+  const { pokemon, type_2, attack, defense, egg_group_1, url_image } = poke;
   return (
     <figure>
       <img src={url_image} alt={pokemon}/>

@@ -10,4 +10,17 @@ const fetchPokemon = async () => {
 
 };
 
-export { fetchPokemon };
+const fetchPokemonBySearch = async (pokemonName) => {
+  const nameToLowerCase = pokemonName.nameToLowerCase();
+
+  const pokemons = await fetch(`${URL}?pokemon=${nameToLowerCase}`);
+  const pokemonData = await pokemons.json();
+
+  // console.log(pokemonData);
+  return pokemonData;
+
+};
+
+
+
+export { fetchPokemon, fetchPokemonBySearch };

@@ -1,31 +1,28 @@
 import { useEffect, useState } from 'react';
 import Controls from '../components/Controls/Controls';
 import { PokemonList } from '../components/pokemonList/PokemonList';
-import { fetchPokemon, fetchPokemonAbilities, fetchPokemonBySearch } from '../services/pokemonAPI';
+import { fetchFilteredPokemon, fetchPokemon, fetchPokemonAbilities, fetchPokemonBySearch } from '../services/pokemonAPI';
 
 
 function PokeContainer(){
   const [pokemons, setPokemons] = useState([]);
   const [isloading, setIsLoading] = useState(true);
   const [searchName, setSearchName] = useState('');
-  const [types, setTypes] = useState([]);
+  const [abilities, setAbilities] = useState([]);
+  const [selectedAbility, setSelectedAbility] = useState('all');
   
 
   useEffect(() => {
     const pokemonData = async () => {
       const data = await fetchPokemon();
       setPokemons(data);
-
-      const abilities = await fetchPokemonAbilities();
-      console.log(abilities);
-
       setIsLoading(false);
     };
 
     pokemonData();
   }, []);
 
-
+  
   const handleSubmit = async (event) =>{
     event.preventDefault();    
     setIsLoading(true);
@@ -38,12 +35,30 @@ function PokeContainer(){
   };
 
   useEffect(() => {
-    const typos = async () => {
-      const fetchedTypes = await fetchPokemonAbilities();
-      setTypes(fetchedTypes);
+    const abily = async () => {
+      const fetchedAbilities = await fetchPokemonAbilities();
+      setAbilities(fetchedAbilities);
     };
-    typos();
+    
+    abily();
+
   }, []);
+
+
+  useEffect(()=> {
+    async function capturedFilteredPokemon(){
+      if (!selectedAbility) return;
+      setIsLoading(true);
+
+      if (selectedAbility !== 'all'){
+        const filteredPokemon = await fetchFilteredPokemon(selectedAbility);
+        console.log('HERE', filteredPokemon);
+        setPokemons(filteredPokemon);
+      }
+      setIsLoading(false);
+    }
+    capturedFilteredPokemon();
+  }, [selectedAbility]);
 
 
 
@@ -54,6 +69,9 @@ function PokeContainer(){
         searchName= {searchName}
         setSearchName = {setSearchName}
         handleSubmit={handleSubmit}
+        abilities={abilities}
+        setSelectedAbility={setSelectedAbility}
+        selectedAbility={selectedAbility}
       />
       <div>
         {isloading ? (<h1> Loading Pokemons!!!!</h1>)

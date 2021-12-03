@@ -1,13 +1,18 @@
+import FilteredForm from '../Forms/FilterForm';
 import { SearchForm } from '../Forms/SearchForm';
 
 
-export default function Controls({ searchName, setSearchName, handleSubmit }){
+export default function Controls({ searchName, setSearchName, handleSubmit, abilities, setSelectedAbility, selectedAbility }){
   return (
-    <SearchForm 
-      searchName= {searchName}
-      setSearchName = {setSearchName}
-      handleSubmit={handleSubmit}
-    />
+    <section>
+      <SearchForm 
+        searchName= {searchName}
+        setSearchName = {setSearchName}
+        handleSubmit={handleSubmit}
+      />
+      <FilteredForm abilities={abilities} setSelectedAbility={setSelectedAbility}
+        selectedAbility={selectedAbility}/>
+    </section>
   );
 
 }

@@ -23,8 +23,6 @@ const fetchPokemonBySearch = async (pokemonName) => {
 
 
 const fetchPokemonAbilities = async () => {
-  
-
   const pokemons = await fetch(`${URL}/abilities`);
   const pokemonData = await pokemons.json();
 
@@ -36,7 +34,17 @@ const fetchPokemonAbilities = async () => {
 };
 
 
+//FILTERED
+const fetchFilteredPokemon = async (ability) => {
+  const res = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?ability=${ability}`);
+  console.log('res', res);
+  const data = await res.json();
 
-export { fetchPokemon, fetchPokemonBySearch, fetchPokemonAbilities };
+ 
+  return data.results;
+};
 
-// https://pokedex-alchemy.herokuapp.com/api/pokedex/abilities
+
+
+
+export { fetchPokemon, fetchPokemonBySearch, fetchPokemonAbilities, fetchFilteredPokemon };

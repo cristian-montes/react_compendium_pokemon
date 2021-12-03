@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Controls from '../components/Controls/Controls';
 import { PokemonList } from '../components/pokemonList/PokemonList';
-import { fetchFilteredPokemon, fetchPokemon, fetchPokemonAbilities, fetchPokemonBySearch } from '../services/pokemonAPI';
+import { fetchFilteredPokemon, fetchPokemon, fetchPokemonAbilities, fetchPokemonBySearch, fetchSortedPokemon } from '../services/pokemonAPI';
 
 
 function PokeContainer(){
@@ -10,6 +10,7 @@ function PokeContainer(){
   const [searchName, setSearchName] = useState('');
   const [abilities, setAbilities] = useState([]);
   const [selectedAbility, setSelectedAbility] = useState('all');
+  const [sorted, setSorted] = useState('');
   
 
   useEffect(() => {
@@ -17,6 +18,8 @@ function PokeContainer(){
       const data = await fetchPokemon();
       setPokemons(data);
       setIsLoading(false);
+      const lomen = await fetchSortedPokemon('asc');
+      console.log(lomen);
     };
 
     pokemonData();
@@ -33,6 +36,13 @@ function PokeContainer(){
     setIsLoading(false);
     setSearchName('');
   };
+
+  //SORT POKEMONS
+  const handleSort = async (event) => {
+    event.preventDefault();
+  };  
+
+
 
   useEffect(() => {
     const abily = async () => {

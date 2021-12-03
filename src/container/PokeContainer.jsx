@@ -1,24 +1,30 @@
 import { useEffect, useState } from 'react';
 import Controls from '../components/Controls/Controls';
 import { PokemonList } from '../components/pokemonList/PokemonList';
-import { fetchPokemon, fetchPokemonBySearch } from '../services/pokemonAPI';
+import { fetchPokemon, fetchPokemonAbilities, fetchPokemonBySearch } from '../services/pokemonAPI';
 
 
 function PokeContainer(){
   const [pokemons, setPokemons] = useState([]);
   const [isloading, setIsLoading] = useState(true);
   const [searchName, setSearchName] = useState('');
+  const [types, setTypes] = useState([]);
   
 
   useEffect(() => {
     const pokemonData = async () => {
       const data = await fetchPokemon();
       setPokemons(data);
+
+      const abilities = await fetchPokemonAbilities();
+      console.log(abilities);
+
       setIsLoading(false);
     };
 
     pokemonData();
   }, []);
+
 
   const handleSubmit = async (event) =>{
     event.preventDefault();    
@@ -30,6 +36,17 @@ function PokeContainer(){
     setIsLoading(false);
     setSearchName('');
   };
+
+  useEffect(() => {
+    const typos = async () => {
+      const fetchedTypes = await fetchPokemonAbilities();
+      setTypes(fetchedTypes);
+    };
+    typos();
+  }, []);
+
+
+
 
   return (
     <main>

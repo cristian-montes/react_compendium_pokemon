@@ -16,11 +16,27 @@ const fetchPokemonBySearch = async (pokemonName) => {
   const pokemons = await fetch(`${URL}?pokemon=${nameToLowerCase}`);
   const pokemonData = await pokemons.json();
 
-  console.log(pokemonData);
   return pokemonData.results;
 
 };
 
 
 
-export { fetchPokemon, fetchPokemonBySearch };
+const fetchPokemonAbilities = async () => {
+  
+
+  const pokemons = await fetch(`${URL}/abilities`);
+  const pokemonData = await pokemons.json();
+
+  // get random abilities
+  const randomAbilities = pokemonData.map((pokemonAbility) => (pokemonAbility.ability)).sort(() => 0.5 - Math.random()).slice(0, 10);
+
+  return randomAbilities;
+
+};
+
+
+
+export { fetchPokemon, fetchPokemonBySearch, fetchPokemonAbilities };
+
+// https://pokedex-alchemy.herokuapp.com/api/pokedex/abilities

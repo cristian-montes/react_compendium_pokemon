@@ -24,8 +24,9 @@ function PokeContainer(){
     event.preventDefault();    
     setIsLoading(true);
 
-    const pokemonData = await fetchPokemonBySearch();
+    const pokemonData = await fetchPokemonBySearch(searchName);
     setPokemons(pokemonData);
+   
     setIsLoading(false);
     setSearchName('');
   };

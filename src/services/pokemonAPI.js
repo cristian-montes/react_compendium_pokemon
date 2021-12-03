@@ -11,13 +11,13 @@ const fetchPokemon = async () => {
 };
 
 const fetchPokemonBySearch = async (pokemonName) => {
-  const nameToLowerCase = pokemonName.nameToLowerCase();
+  const nameToLowerCase = pokemonName.toLowerCase();
 
   const pokemons = await fetch(`${URL}?pokemon=${nameToLowerCase}`);
   const pokemonData = await pokemons.json();
 
-  // console.log(pokemonData);
-  return pokemonData;
+  console.log(pokemonData);
+  return pokemonData.results;
 
 };
 

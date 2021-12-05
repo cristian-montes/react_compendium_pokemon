@@ -111,3 +111,4 @@ it('should render PokeList component', ()=> {
   expect(pokemons).toMatchSnapshot();
 
 });
+

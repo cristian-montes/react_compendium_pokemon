@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Pokemon from '../pokemon/Pokemon';
 
 export function PokemonList({ pokemons }){
